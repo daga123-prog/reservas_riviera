@@ -1,0 +1,146 @@
+:root {
+  --primario:#e65100;
+  --primario-oscuro:#bf360c;
+  --secundario:#fff3e0;
+  --oscuro:#2e1a12;
+  --claro:#fff;
+  --gris:#7a6a62;
+  --peligro:#b3261e;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:Arial,sans-serif; color:var(--oscuro); background:#faf6f3; }
+
+/* Accesibilidad: texto solo para lectores de pantalla */
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+[hidden] { display:none !important; }
+
+.encabezado {
+  min-height:220px; padding:40px 8%; display:flex;
+  flex-direction:column; justify-content:center; color:var(--claro);
+  background:linear-gradient(135deg,#ff6f61,#e65100 60%,#bf360c);
+}
+.encabezado h1 { margin:0 0 8px; font-size:clamp(2rem,5vw,3.5rem); }
+.encabezado p { margin:0; }
+.contenedor { width:min(1100px,90%); margin:30px auto; }
+
+/* Controles */
+.controles {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:12px; margin-bottom:15px;
+}
+.controles input, .controles select {
+  width:100%; padding:11px 16px; border:1px solid #d8c7bd;
+  border-radius:20px; background:white; font-size:.95rem;
+}
+.controles input:focus, .controles select:focus {
+  outline:2px solid var(--primario); border-color:var(--primario);
+}
+.estado { color:var(--gris); margin:15px 0; }
+
+/* Botones (estilo píldora) */
+button {
+  padding:10px 16px; border:1px solid var(--primario); border-radius:20px;
+  background:var(--claro); color:var(--primario-oscuro); cursor:pointer; font-size:.9rem;
+}
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline:3px solid var(--primario-oscuro); outline-offset:2px;
+}
+button:disabled { opacity:.5; cursor:not-allowed; }
+
+/* Mensajes dentro de la página */
+.mensaje {
+  margin:0 0 18px; padding:12px 16px; border-radius:14px;
+  border-left:6px solid var(--primario); background:var(--secundario);
+  color:var(--oscuro); font-weight:bold;
+}
+.mensaje.error { border-left-color:var(--peligro); background:#fdecea; color:#7a1812; }
+.mensaje.exito { border-left-color:var(--primario); background:var(--secundario); color:#7a2e0a; }
+
+/* Catálogo */
+.catalogo { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.tarjeta {
+  overflow:hidden; border-radius:14px; background:var(--claro);
+  box-shadow:0 4px 12px #00000018; transition:transform .2s;
+  border-top:5px solid var(--primario);
+}
+.tarjeta:hover { transform:translateY(-5px); }
+.tarjeta[data-cat="naturaleza"]  { border-top-color:#2e7d32; }
+.tarjeta[data-cat="cultura"]     { border-top-color:#6a1b9a; }
+.tarjeta[data-cat="aventura"]    { border-top-color:#0277bd; }
+.tarjeta[data-cat="gastronomia"] { border-top-color:#c62828; }
+.tarjeta[data-cat="bienestar"]   { border-top-color:#00897b; }
+
+.imagen { min-height:130px; display:grid; place-items:center;
+  background:var(--secundario); font-size:3.5rem; }
+.informacion { padding:18px; }
+.categoria { color:var(--primario-oscuro); font-size:.8rem;
+  font-weight:bold; text-transform:uppercase; }
+.precio { font-size:1.2rem; font-weight:bold; }
+.tarjeta input[type="number"] {
+  width:75px; padding:8px; margin:10px 0; border:1px solid #d8c7bd; border-radius:12px;
+}
+.btn-reservar { display:block; width:100%; margin-top:10px;
+  color:var(--claro); background:var(--primario-oscuro); border-color:var(--primario-oscuro); }
+.btn-reservar:hover { background:var(--primario); border-color:var(--primario); }
+
+/* Mi reservación */
+.resumen { margin-top:35px; padding:25px; background:white;
+  border-radius:14px; box-shadow:0 4px 12px #00000018;
+  border-top:5px solid var(--primario); }
+.item-reserva { display:flex; justify-content:space-between; gap:20px;
+  padding:15px 0; border-bottom:1px solid #eadfd8; }
+.item-reserva p { margin:5px 0; }
+.item-reserva > div:last-child { text-align:right; }
+.btn-eliminar { color:var(--claro); background:var(--peligro); border-color:var(--peligro); margin-top:8px; }
+.btn-eliminar:hover { background:#8c1d18; border-color:#8c1d18; }
+
+.control-cantidad { display:flex; align-items:center; gap:10px; margin-top:8px; }
+.btn-cantidad {
+  width:38px; height:38px; padding:0; font-weight:bold; font-size:1.2rem;
+  border-radius:50%; color:var(--primario-oscuro); background:var(--secundario);
+}
+.btn-cantidad:hover { background:var(--primario); color:var(--claro); }
+.cantidad-actual { min-width:2ch; text-align:center; font-weight:bold; }
+
+.resumen-totales { margin-top:15px; }
+.resumen-totales p { margin:6px 0; text-align:right; }
+.personas { font-size:1.1rem; color:var(--gris); }
+.total { font-size:1.4rem; font-weight:bold; }
+
+.acciones-resumen { margin-top:15px; text-align:right; }
+.btn-vaciar { color:var(--peligro); background:white; border:2px solid var(--peligro); font-weight:bold; }
+.btn-vaciar:hover:not(:disabled) { background:var(--peligro); color:var(--claro); }
+.btn-secundario { color:var(--oscuro); background:#f1e7e1; border-color:#d8c7bd; margin-top:8px; }
+.btn-secundario:hover { background:#e6d8cf; }
+
+.confirmacion {
+  margin-top:15px; padding:18px; border-radius:14px;
+  background:#fdecea; border:1px solid var(--peligro);
+}
+.confirmacion p { margin:0 0 6px; font-weight:bold; }
+.confirmacion-botones { display:flex; gap:10px; flex-wrap:wrap; }
+
+.sin-resultados { grid-column:1/-1; padding:40px 0; text-align:center;
+  color:var(--gris); font-size:1.1rem; }
+footer { padding:20px; text-align:center; color:var(--claro); background:var(--oscuro); }
+
+@media (max-width:850px) {
+  .catalogo { grid-template-columns:repeat(2,1fr); }
+  .controles { grid-template-columns:1fr 1fr; }
+  .campo-buscador { grid-column:1/-1; }
+}
+@media (max-width:550px) {
+  .catalogo, .controles { grid-template-columns:1fr; }
+  .campo-buscador { grid-column:auto; }
+  .encabezado { min-height:180px; padding:30px 5%; }
+  .item-reserva { flex-direction:column; }
+  .item-reserva > div:last-child { text-align:left; }
+  .acciones-resumen { text-align:left; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .tarjeta { transition:none; }
+  .tarjeta:hover { transform:none; }
+}
